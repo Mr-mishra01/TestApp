@@ -91,6 +91,7 @@ const RegisterationScreen = () => {
       ]);
     } else {
       storeUserData();
+      navigation.navigate('LoginScreen')
     }
   };
 

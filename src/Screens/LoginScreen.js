@@ -11,6 +11,7 @@ const LoginScreen = () => {
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
   const [focus, setfocus] = useState(false);
+  const [user, setuser] = useState('');
 
   useEffect(() => {
     getUserData();
@@ -19,6 +20,8 @@ const LoginScreen = () => {
     try {
       const value = await AsyncStorage.getItem('userData');
       const res = JSON.parse(value);
+      setuser(res)
+
       if (value) {
         console.log('user data value', res);
       } else {
@@ -40,7 +43,7 @@ const LoginScreen = () => {
         {text: 'OK', onPress: () => console.log('OK Pressed')},
       ]);
     } else {
-      if (res.email == email && res.password == password) {
+      if (user.email == email && user.password == password) {
         console.log('loginSuccess');
 
         navigation.navigate('HomeScreen');
